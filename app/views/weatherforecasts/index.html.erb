@@ -1,6 +1,27 @@
-<% @weathers.each do |aaa| %>
-<p><%= aaa %></p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 currentWeather">
+      
+      <h5><%=  @weathers['city']['name'] %> current weather</h5>
+    </div>
+    
+    <div class="col-md-8 wetherForecast">
+      <h1>16 days forecast</h1>
+
+         <% @weathers['list'].each do |weather| %>
+         
+
+         <h3><%=  weather['temp']['day'] %></h3>
+ <h3><%=  weather['temp']['eve'] %></h3>
+          <% end %>
+
+          
+    </div>
+  </div>
+</div>
+
+
+
 <hr>
 
 

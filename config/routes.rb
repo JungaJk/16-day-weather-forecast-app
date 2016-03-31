@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-
-  get 'weatherforecasts/index'
   root 'pages#home'
-
+  resources :weatherforecasts
+  match '/pages/getCityName', :to => 'pages#getCityName',:via => [:get]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
