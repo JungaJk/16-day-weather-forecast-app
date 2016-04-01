@@ -1,3 +1,35 @@
-// Place all the styles related to the weatherforecasts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.weather_body{
+    background: #fff;
+    padding: 0;
+    margin: 0;
+    font-family: "Raleway", Arial, sans-serif;
+}
+
+h1, h3{
+    color: #283349;
+    text-align: center;
+    text-transform: capitalize;
+    padding:15px;
+}
+
+.currentWeather{
+    padding: 0 30px;
+}
+.weather_description{
+    color: #283349;
+    text-transform: capitalize;
+    min-height: 50px;
+}
+.panel-default > .weather-panel-heading {
+    background: #f16164;
+    border-color: #f16164;
+    color: #fff;
+    text-align: center;
+}
+
+.label {
+    font-family: 'Roboto', sans-serif;
+}
+.weather_forecast:hover{
+    background: #f5f5f5;
+}

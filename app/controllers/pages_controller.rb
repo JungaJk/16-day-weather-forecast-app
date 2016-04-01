@@ -3,7 +3,7 @@ class PagesController < ApplicationController
   end
   
   def getCityName 
-    if params[:city]
+    if params[:city].present?
         redirect_to weatherforecasts_path(:city => params[:city])
      else 
       respond_to do |f|
