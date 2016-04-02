@@ -1,70 +1,96 @@
 <body class="weather_body">
-<div class="container">
-  <!-------------------------- Display city name------------------------------------>
- 
- 
-  <div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-default">
-        <div class="panel-heading"><h1><%=  @weathers['city']['name'] %> </h1></div>
-
-  
-  <div class="row">
-    <!-------------------------- Display current weather------------------------------------>
-    <div class="col-md-3 currentWeather">
-      <h3>current weather</h3>
-      <div class="panel panel-default">
-        <div class="panel-heading">Panel Heading</div>
-        <div class="panel-body">Panel Content</div>
-      </div>
-      <% @currentWeather[ 'weather'].each do |weather| %>
-        <h5><%=  weather['description'] %></h5>
-      <% end %>
-    </div>
-    <!----------------------- Display 16day weather forecast --------------------------------->
-    <div class="col-md-9 wetherForecast">
-      <h3>16 days weather forecast</h3>
-      <% @weathers[ 'list'].each do |weather| %>
-       <% weather[ 'weather'].each do |a| %>
+  <div class="container">
+    <div class="row">
+<!-------------------------- Display city name------------------------------------>
+      <div class="col-md-12 wetherForecast">
+        <h1><%= @weathers['city']['name'] %>, <%= @weathers['city']['country'] %> - 16 days weather forecast</h1>
+        <p class="text-center"><i class="fa fa-search"></i> Click the widget to see the detail</p>
+<!--------------------------- Display 16day weather forecast --------------------------------->              
+        <h3></h3>
+        <% @weathers[ 'list'].each do |weather| %>
+        <% weather[ 'weather'].each do |weather_forecast| %>
         <div class="col-md-3" data-toggle="modal" data-target="#myModal<%=  weather['dt'] %>">
           <div class="panel panel-default weather_forecast">
-            <div class="panel-heading weather-panel-heading">
-              <%=Time.at(weather[ 'dt']).strftime( "%m/%d/%Y") %>
-            </div>
-            <div class="panel-body weather-panel-body text-center">
-               <%=image_tag @weather_img_url+a[ 'icon']+ ".png" %>
-                <p class="weather_description"><%=a [ 'description'] %></p>
-               <h4><span class="label label-pill label-info"> <%=sprintf( '%.1f', weather[ 'temp']['min']-273.15) %>&#8451</span>
-              
-             <span class="label label-pill label-default"> <%=sprintf( '%.1f', weather[ 'temp'][ 'max']-273.15) %>&#8451</span></h4>
-            </div>
-            </div>
-          </div>
-             
-                  <div id="myModal<%=  weather['dt'] %>" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <!-- Modal content-->
-                      <div class="modal-content">
-                        <div class="modal-header">
+              <div class="panel-heading weather-panel-heading">
+                  <%=Time.at(weather[ 'dt']).strftime("%A %d %B") %>
+              </div><!-- /weather-panel-heading -->
+              <div class="panel-body weather-panel-body text-center">
+                  <%=image_tag @weather_img_url+weather_forecast[ 'icon']+ ".png" %>
+                  <p class="weather_description"><%= weather_forecast[ 'description'] %></p>
+                  <h4>
+                    <span class="label label-pill label-info"> <%=sprintf( '%.1f', weather[ 'temp']['min']-273.15) %>&#8451</span>
+                    <span class="label label-pill label-default"> <%=sprintf( '%.1f', weather[ 'temp'][ 'max']-273.15) %>&#8451</span>
+                  </h4>
+              </div><!-- /weather-panel-body -->
+          </div><!-- /weather_forecast -->
+        </div><!-- /col-md-3 -->
+          <div id="myModal<%=  weather['dt'] %>" class="modal fade" role="dialog">
+              <div class="modal-dialog modal-sm"">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                      <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Modal Header</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>weather
-                            <%=a [ 'description'] %>
-                          </p>
-                        </div>
-                        <div class="modal-footer">
+                          <h4 class="modal-title"><%=Time.at(weather[ 'dt']).strftime("%A %d %B") %></h4>
+                      </div><!-- /modal-header -->
+                      <div class="modal-body text-center">
+                       
+                         <%=image_tag @weather_img_url+weather_forecast[ 'icon']+ ".png" %>
+                        <table class="table table-striped">
+                          <tr>
+                            <td>Day</td>
+                            <td><%=sprintf( '%.1f', weather[ 'temp']['day']-273.15) %>&#8451</td>
+                          </tr>
+                          <tr>
+                            <td>moning</td>
+                            <td><%=sprintf( '%.1f', weather[ 'temp']['morn']-273.15) %>&#8451</td>
+                          </tr>
+                          <tr>
+                            <td>Low</td>
+                            <td><%=sprintf( '%.1f', weather[ 'temp']['min']-273.15) %>&#8451</td>
+                          </tr>
+                          <tr>
+                            <td>High</td>
+                            <td><%=sprintf( '%.1f', weather[ 'temp']['max']-273.15) %>&#8451</td>
+                          </tr>
+                           <tr>
+                            <td>Humidity</td>
+                            <td><%=  weather[ 'humidity'] %> %</td>
+                          </tr>
+                          <tr>
+                            <td>pressure</td>
+                            <td><%=  weather[ 'pressure'] %>hPa</td>
+                          </tr>
+                          <tr>
+                            <td>clouds</td>
+                            <td><%=  weather['rains'] %> </td>
+                          </tr>
+                          
+                        </table>
+                      </div><!-- /modal-body -->
+                      <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-        <% end %>
-        <% end %>
-    </div>
-  </div>
-</div>
-    </div>
-  </div>
-  </body>
+                      </div><!-- /modal-footer -->
+                  </div><!-- /modal-content -->
+              </div><!-- /modal-dialog -->
+          </div><!-- /myModal -->
+          <% end %>
+          <% end %>
+          <div class="link_btns text-center">
+            <%= link_to "Back", root_path, :class=> "btn btn-success"%>
+            or
+            <button type="button" class="btn btn-success" id="scrollTop">Scroll up</button>
+          </div>
+         
+        </div><!-- /wetherForecast -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+  <script>
+    $(document).ready(function () {
+      $('#scrollTop').click(function () {
+          $("html, body").animate({
+              scrollTop: 0
+          }, 700);
+      });
+    });
+  </script>
+</body>

@@ -18,6 +18,13 @@
 </ul>
 <p>01/04/2016</p>
 <ul>
-    <li>Coded the weatherforecasts/index page to display current weather and 16 day weather forecast content.</li>
+    <li>Coded the weatherforecasts/index page to display 16 day weather forecast content.</li>
     <li>Applied some styles in the index page.</li>
+</ul>
+<p>02/04/2016</p>
+<ul>
+    <li>Coded the weatherforecasts/index page to display 16 day weather forecast content.</li>
+    <li>When a widget is clicked, a modal dialog is opened and display details.</li>
+    <li>Added link buttons (Home page and scroll up).</li>
+    <li>Diployed the app to Heroku https://junga-16dayweather.herokuapp.com/</li>
 </ul>
