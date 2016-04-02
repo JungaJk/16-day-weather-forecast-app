@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'rails', '4.2.4'
 #consuming web service 
 gem 'httparty'
 #Managing ENV variables.
