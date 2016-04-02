@@ -25,7 +25,7 @@
           </div><!-- /weather_forecast -->
         </div><!-- /col-md-3 -->
           <div id="myModal<%=  weather['dt'] %>" class="modal fade" role="dialog">
-              <div class="modal-dialog modal-sm"">
+              <div class="modal-dialog modal-sm">
                   <!-- Modal content-->
                   <div class="modal-content">
                       <div class="modal-header">
@@ -33,17 +33,8 @@
                           <h4 class="modal-title"><%=Time.at(weather[ 'dt']).strftime("%A %d %B") %></h4>
                       </div><!-- /modal-header -->
                       <div class="modal-body text-center">
-                       
                          <%=image_tag @weather_img_url+weather_forecast[ 'icon']+ ".png" %>
                         <table class="table table-striped">
-                          <tr>
-                            <td>Day</td>
-                            <td><%=sprintf( '%.1f', weather[ 'temp']['day']-273.15) %>&#8451</td>
-                          </tr>
-                          <tr>
-                            <td>moning</td>
-                            <td><%=sprintf( '%.1f', weather[ 'temp']['morn']-273.15) %>&#8451</td>
-                          </tr>
                           <tr>
                             <td>Low</td>
                             <td><%=sprintf( '%.1f', weather[ 'temp']['min']-273.15) %>&#8451</td>
@@ -52,19 +43,30 @@
                             <td>High</td>
                             <td><%=sprintf( '%.1f', weather[ 'temp']['max']-273.15) %>&#8451</td>
                           </tr>
+                          <tr>
+                            <td>Day</td>
+                            <td><%=sprintf( '%.1f', weather[ 'temp']['day']-273.15) %>&#8451</td>
+                          </tr>
+                          <tr>
+                            <td>Moning</td>
+                            <td><%=sprintf( '%.1f', weather[ 'temp']['morn']-273.15) %>&#8451</td>
+                          </tr>
+                          <tr>
+                            <td>Night</td>
+                            <td><%=sprintf( '%.1f', weather[ 'temp']['night']-273.15) %>&#8451</td>
+                          </tr>
+                          <tr>
+                            <td>Evening</td>
+                            <td><%=sprintf( '%.1f', weather[ 'temp']['eve']-273.15) %>&#8451</td>
+                          </tr>
                            <tr>
                             <td>Humidity</td>
                             <td><%=  weather[ 'humidity'] %> %</td>
                           </tr>
                           <tr>
-                            <td>pressure</td>
-                            <td><%=  weather[ 'pressure'] %>hPa</td>
+                            <td>Cloudiness</td>
+                            <td><%=  weather['clouds'] %> %</td>
                           </tr>
-                          <tr>
-                            <td>clouds</td>
-                            <td><%=  weather['rains'] %> </td>
-                          </tr>
-                          
                         </table>
                       </div><!-- /modal-body -->
                       <div class="modal-footer">
