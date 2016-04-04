@@ -2,6 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 searchBox">
+                <h2>search 16 day weather forecast</h2>
                 <form id="searchForm" class="searchform" action="/pages/getCityName" method="get">
                     <input type="hidden" class="form-control" id="country" name="country">
                     <div class="input-group">
@@ -10,30 +11,38 @@
                             <button class="btn btn-default" id="searchbtn" type="submit">Search</button>
                         </span>
                     </div><!-- /input-group -->
-                </form>
+                </form><!-- /searchForm -->
             </div><!-- /searchBox -->
         </div><!-- /row -->
     </div><!-- /container -->
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&libraries=places&language=en-AU"></script>
-        <script>
-           $('#searchbtn').click(function() {
+    <script>
+        $(document).ready(function () {
+            //Get city and country name
+            $('#searchbtn').click(function() {
                 var address = $('#address').val();
                 var cityName = address.split(",")[0];
                 var countryName = address.split(",")[1];
                 
                 $('#country').val(countryName);
                 $('#address').val(cityName);
-                 
-           });
-var options = {             
-    types: ['geocode']
-};
-            var autocomplete = new google.maps.places.Autocomplete($("#address")[0],options);
+             
+            });
+        
+            //Google autocomplete
+            var input = document.getElementById('address');
+            var options = {
+              types: ['(cities)']
+            };
+    
+            var autocomplete = new google.maps.places.Autocomplete(input, options);
+        
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
                 var place = autocomplete.getPlace();
                 console.log(place.address_components);
             });
-        </script>
+        });
+    </script>
  </body>
 
 
